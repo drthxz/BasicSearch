@@ -20,6 +20,9 @@ void chikuji_search();
 void binary_search();
 void Merge();
 
+void Hash();
+int hash_make(char *s);
+
 //学生リスト
 struct Seito
 {
@@ -69,7 +72,8 @@ int main()
 	
 	//chikuji_search();
 	//binary_search();
-	Merge();
+	//Merge();
+	Hash();
 
 	//int sort_data[] = { 50,80,45,31,45,51,2,96,45,200,-1 };//得点  11番目作ると入力数値を入れれる
 	//int no[] = { 0, 1, 2, 3, 4, 5,6, 7, 8,  9,-1 };//クリア面数
@@ -113,7 +117,59 @@ int main()
 }
 
 //ハッシュ
+void Hash(){
+		//データ作成
+		const int TableSize=1000;
+		const int ModSize=1000;
 
+		struct tel{
+				char name[20];
+				char telnum[20];
+				int enpty;//使用中??
+		}dat[TableSize];
+		//tel*dat[TableSize];
+		int n;
+		char a[20],b[20];
+		cout<<"入力終了は9999	"<<endl;
+		//データ作成
+		while(true){
+				cout<<"名前を入力---->";
+				cin>>a;
+				if(strcmp(a,"9999")==0)break;
+				cout<<"電話番号を入力--->";
+				cin>>b;
+				if(strcmp(b,"9999")==0)break;
+				n=hash_make(a);
+
+				while(dat[n].enpty==1 && n<TableSize) n++;//次の場所
+				if(n<TableSize){
+					strcpy_s(dat[n].name,a);
+					strcpy_s(dat[n].telnum,b);
+					dat[n].enpty=1;
+				}else{
+					cout<<"容量を超えました"<<endl;
+				}
+		}
+
+		while(true){//存在しない名前の時のエラー処理なし！！
+			cout<<endl;
+			cout<<"探す名前を入力----->";
+			cin>>a;
+			if(strcmp(a,"9999")==0)break;
+			n=hash_make(a);
+			//suzuki とsizukiを探せ---------	
+			//nに入っているデータの表示
+			cout<<"ハッシュ番号＝"<<n;
+			cout<<"[名前]"<<dat[n].name<<"[TEL]"<<dat->telnum<<endl;
+		}
+}
+int hash_make(char *s){
+		const int modSize=1000;
+		int n=strlen(s);//文字列の長さを求める
+		int result=0;
+		result=(s[0] - 'A' + (s[n/2-1]-'A') *26  + (s[n-2]-'A') *26 *26 ) %modSize;
+		return result;
+}
 
 //昇順に並んだ2組のデータ列を併合する
 void Merge(){
