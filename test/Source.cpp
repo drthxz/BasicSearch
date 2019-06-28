@@ -160,7 +160,7 @@ void Hash(){
 			//suzuki とsizukiを探せ---------	
 			//nに入っているデータの表示
 			cout<<"ハッシュ番号＝"<<n;
-			cout<<"[名前]"<<dat[n].name<<"[TEL]"<<dat->telnum<<endl;
+			cout<<"[名前]"<<dat[n].name<<"[TEL]"<<dat[n].telnum<<endl;
 		}
 }
 int hash_make(char *s){
