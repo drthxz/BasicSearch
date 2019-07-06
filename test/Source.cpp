@@ -70,44 +70,60 @@ int main()
 	//
 	//}
 	
-	//chikuji_search();
-	//binary_search();
-	//Merge();
+	//chikuji_search();//前から順番に探索
+	//binary_search();//2分探索
+	//Merge();//昇順に並んだ2組のデータ列を併合する
 	//Hash();
 
-	//安定なソート-------------------------------------------
+	//ソート-------------------------------------------
+
+	
 	int sort_data[] = { 50,80,45,31,45,51,2,96,45,200,-1 };//得点  11番目作ると入力数値を入れれる
 	int no[] = { 0, 1, 2, 3, 4, 5,6, 7, 8,  9,-1 };//クリア面数
 	wstring name[] = { L"あ",L"い",L"う",L"え",L"お",L"か",L"き",L"く",L"け",L"こ",L"" };
 
-	Stable_Show(sort_data, no, 10);
+	//Sort_Select------------
+	Show(sort_data, 10);
+	Sort_Select(sort_data, 10);
+	Show(sort_data, 10);
+	//Sort_Select------------
 
-	Stable_Sort(sort_data, no, 10);
+	//Stable-------------
+	//Stable_Show(sort_data, no, 10);
+	//Stable_Sort(sort_data, no, 10);
+	//Stable_Show(sort_data, no, 10);
+	//Stable_Sort(sort_data, no, 10);
+	//StableEnd----------
+	
+	//Insertion_Sort-----------
+	//Show(sort_data, 10);
+	//Insertion_Sort(sort_data, 10);
+	//Show(sort_data, 10);
+	//Insertion_Sort-----------
 
-	Stable_Show(sort_data, no, 10);
+	//ランキングBubble-------------
+	int Now_data, Now_stage;
+	wstring Now_name;
 
-	Stable_Sort(sort_data, no, 10);
+	Show2(sort_data, no, name, 10);
+	cout << "得点は？"; cin >> Now_data;
+	cout << "面数は？"; cin >> Now_stage;
+	wcout << L"名前は？"; wcin >> Now_name;
+
+	//ランキングOK?
+	sort_data[10] = Now_data;
+	no[10] = Now_stage;
+	name[10] = Now_name;
+	
+	Bubble_tset(sort_data, no, name, 11);
+	Show2(sort_data, no, name, 10);
+	
+	//ランキングBubbleEnd------------
 
 	//------------------------------------------------------
 
-	//int Now_data, Now_stage;
-	//wstring Now_name;
-	//cout << "得点は？"; cin >> Now_data;
-	//cout << "面数は？"; cin >> Now_stage;
-	//wcout << L"名前は？"; wcin >> Now_name;
-
-	////ランキングOK?
-	//sort_data[10] = Now_data;
-	//no[10] = Now_stage;
-	//name[10] = Now_name;
-
-	//Bubble_tset(sort_data, no, name, 11);
-	//Show2(sort_data, no, name, 10);
-	//Show(sort_data, 10);
-	
-
-	//ファイル読み込み
-	file_load(L"Book1.csv", sort_data,no,name);
+	//CSVファイルの読み込み
+	//file_load(L"Book1.csv", sort_data,no,name);
 
 
 
@@ -419,6 +435,7 @@ void Stable_Show(int data[], int no[], int length) {
 
 void Show(int data[], int length) {
 
+	cout << "点数　"<<endl;
 	for (int i = 0; i < length; i++) {
 
 		cout << data[i] << " ";
