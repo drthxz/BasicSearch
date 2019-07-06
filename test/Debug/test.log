@@ -1,6 +1,4 @@
 ﻿  Source.cpp
-c:\users\student\desktop\basicsearch\test\source.cpp(93): warning C4101: 'Now_stage': ローカル変数は 1 度も使われていません。
-c:\users\student\desktop\basicsearch\test\source.cpp(93): warning C4101: 'Now_data': ローカル変数は 1 度も使われていません。
-c:\users\student\desktop\basicsearch\test\source.cpp(258): warning C4101: 'j': ローカル変数は 1 度も使われていません。
-c:\users\student\desktop\basicsearch\test\source.cpp(364): warning C4101: 'j': ローカル変数は 1 度も使われていません。
-  test.vcxproj -> C:\Users\student\Desktop\BasicSearch\test\Debug\test.exe
+c:\users\drthx\desktop\basicsearch\test\source.cpp(258): warning C4101: 'j': ローカル変数は 1 度も使われていません。
+c:\users\drthx\desktop\basicsearch\test\source.cpp(364): warning C4101: 'j': ローカル変数は 1 度も使われていません。
+  test.vcxproj -> C:\Users\drthx\Desktop\BasicSearch\test\Debug\test.exe

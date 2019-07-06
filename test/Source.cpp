@@ -43,60 +43,60 @@ int main()
 	wcin.imbue(locale(""));
 	cout << "5B 許" << endl;
 
-	int sort_data[11];
-	int no[11];
-	wstring name[11];
+	//int sort_data[11];
+	//int no[11];
+	//wstring name[11];
 
-	//データをポインターで示す
-	for (int i=0;i<10;i++) p[i]=&a[i];
-	//for文で10人分の並び替え
-	for(int j=0;j<10-1;j++){
-		//初期化と設定
-		int k2=0;
+	////データをポインターで示す
+	//for (int i=0;i<10;i++) p[i]=&a[i];
+	////for文で10人分の並び替え
+	//for(int j=0;j<10-1;j++){
+	//	//初期化と設定
+	//	int k2=0;
 
-		for(int k=1;k<10;k++){
-			//大きい？小さい？
-				k2=k;
-		}
-		//交換
-		t=p[j];//避難
-		p[j]=p[k2];//set
-		p[k2]=t;
-	}
+	//	for(int k=1;k<10;k++){
+	//		//大きい？小さい？
+	//			k2=k;
+	//	}
+	//	//交換
+	//	t=p[j];//避難
+	//	p[j]=p[k2];//set
+	//	p[k2]=t;
+	//}
 
-	//結果表示
-	for (int h=0;h<10;h++){
-		cout<<p[h]->name<<p[h]->age<<endl;
-	
-	}
+	////結果表示
+	//for (int h=0;h<10;h++){
+	//	cout<<p[h]->name<<p[h]->age<<endl;
+	//
+	//}
 	
 	//chikuji_search();
 	//binary_search();
 	//Merge();
-	Hash();
+	//Hash();
 
-	//int sort_data[] = { 50,80,45,31,45,51,2,96,45,200,-1 };//得点  11番目作ると入力数値を入れれる
-	//int no[] = { 0, 1, 2, 3, 4, 5,6, 7, 8,  9,-1 };//クリア面数
-	//wstring name[] = { L"あ",L"い",L"う",L"え",L"お",L"か",L"き",L"く",L"け",L"こ",L"" };
+	//安定なソート-------------------------------------------
+	int sort_data[] = { 50,80,45,31,45,51,2,96,45,200,-1 };//得点  11番目作ると入力数値を入れれる
+	int no[] = { 0, 1, 2, 3, 4, 5,6, 7, 8,  9,-1 };//クリア面数
+	wstring name[] = { L"あ",L"い",L"う",L"え",L"お",L"か",L"き",L"く",L"け",L"こ",L"" };
 
-	//Show(sort_data, 10);
-	//Stable_Show(sort_data, no, 10);
+	Stable_Show(sort_data, no, 10);
 
-	//Stable_Sort(sort_data, no, 10);
+	Stable_Sort(sort_data, no, 10);
 
-	//Stable_Show(sort_data, no, 10);
+	Stable_Show(sort_data, no, 10);
 
-	//Stable_Sort(sort_data, no, 10);
+	Stable_Sort(sort_data, no, 10);
 
-	Show2(sort_data, no, name, 10);
+	//------------------------------------------------------
 
-	int Now_data, Now_stage;
-	wstring Now_name;
+	//int Now_data, Now_stage;
+	//wstring Now_name;
 	//cout << "得点は？"; cin >> Now_data;
 	//cout << "面数は？"; cin >> Now_stage;
 	//wcout << L"名前は？"; wcin >> Now_name;
 
-	//ランキングOK?
+	////ランキングOK?
 	//sort_data[10] = Now_data;
 	//no[10] = Now_stage;
 	//name[10] = Now_name;
@@ -104,10 +104,10 @@ int main()
 	//Bubble_tset(sort_data, no, name, 11);
 	//Show2(sort_data, no, name, 10);
 	//Show(sort_data, 10);
-
+	
 
 	//ファイル読み込み
-	//file_load(L"Book1.csv", sort_data,no,name);
+	file_load(L"Book1.csv", sort_data,no,name);
 
 
 
@@ -389,6 +389,62 @@ void Stable_Sort(int data[], int no[], int length) {
 	}
 }
 
+void Stable_Show(int data[], int no[], int length) {
+
+	cout << "点数  ";
+	for (int i = 0; i < length; i++) {
+
+		cout << data[i] << " ";
+
+
+	}
+
+	cout << endl;
+	cout << "no    ";
+	for (int i = 0; i < length; i++) {
+
+		cout << no[i] << "  ";
+
+
+	}
+
+	cout << endl;
+
+
+}
+
+
+
+
+
+void Show(int data[], int length) {
+
+	for (int i = 0; i < length; i++) {
+
+		cout << data[i] << " ";
+
+	}
+
+	cout << endl;
+
+}
+
+//---------------------
+//ランキングソート用表示
+//---------------------
+void Show2(int data[], int no[], wstring name[], int length) {
+
+	for (int i = 0; i < length; i++) {
+
+		cout << i + 1 << "位　" << data[i] << "点　-　";
+		wcout << name[i];
+		cout << " - " << no[i] << "面" << endl;
+
+	}
+	cout << " " << endl;
+
+}
+
 //---------------
 //CSVファイルの読み込み
 //引数：：読み込むファイル名
@@ -414,21 +470,21 @@ bool file_load(wstring F_name,int sort_data[],int no[],wstring name[]){
 			
 			//初期データをファイルの中身と入れ替える<<<<
 			if(i==0){
-			cout << atoi(tmp.c_str());//文字データを整数型に変換  789,12,田中
+			//cout << atoi(tmp.c_str());//文字データを整数型に変換  789,12,田中
 
 			cout << tmp << endl;
 			sort_data[i] = atoi(tmp.c_str());
 			}
 
 			if(i==1){
-				cout << atoi(tmp.c_str());//文字データを整数型に変換  789,12,田中
+				//cout << atoi(tmp.c_str());//文字データを整数型に変換  789,12,田中
 
 				cout << tmp << endl;
 				tmp = no[i];
 			}
 
 			if(i==2){
-				cout << atoi(tmp.c_str());//文字データを整数型に変換  789,12,田中
+				//cout << atoi(tmp.c_str());//文字データを整数型に変換  789,12,田中
 
 				cout << tmp << endl;
 				//tmp = name[0];
@@ -444,53 +500,6 @@ bool file_load(wstring F_name,int sort_data[],int no[],wstring name[]){
 }
 
 
-void Stable_Show(int data[], int no[], int length){
-
-	for (int i = 0; i < length; i++) {
-
-		cout << data[i] << " ";
 
 
-	}
 
-	cout << endl;
-
-	for (int i = 0; i < length; i++) {
-
-		cout << no[i] << " ";
-
-
-	}
-
-	cout << endl;
-
-
-}
-
-void Show(int data[],int length){
-
-	for(int i=0;i< length;i++){
-	
-		cout << data[i] << " ";
-
-	}
-
-	cout << endl;
-
-}
-
-//---------------------
-//ランキングソート用表示
-//---------------------
-void Show2(int data[],int no[],wstring name[], int length) {
-
-	for (int i = 0; i < length; i++) {
-
-		cout << i+1 << "位　" << data[i] << "点　-　";
-		wcout<< name[i];
-		cout << " - " << no[i] << "面" << endl;
-
-	}
-	cout << " " << endl;
-
-}
