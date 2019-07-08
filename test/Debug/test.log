@@ -1,4 +1,0 @@
-﻿  Source.cpp
-c:\users\drthx\desktop\basicsearch\test\source.cpp(274): warning C4101: 'j': ローカル変数は 1 度も使われていません。
-c:\users\drthx\desktop\basicsearch\test\source.cpp(380): warning C4101: 'j': ローカル変数は 1 度も使われていません。
-  test.vcxproj -> C:\Users\drthx\Desktop\BasicSearch\test\Debug\test.exe
