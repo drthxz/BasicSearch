@@ -33,6 +33,19 @@ struct Seito
 	"aaaa",9999
 };
 
+struct  Enemy* talloc(void);
+/* 型枠の宣言 */
+struct Enemy{
+	char name[20];
+	int Hp;
+	struct Enemy* next;//ポインター
+};
+struct Enemy *head, *p_enemy , *old , *n ;
+char key[20];
+int flag;
+/* 構造体変数の宣言 */
+//typedef struct enemy Enemy_t;
+void Display();
 
 
 int main()
@@ -41,6 +54,61 @@ int main()
 	wcout.imbue(locale(""));
 	wcin.imbue(locale(""));
 	cout << "5B 許" << endl;
+
+	//-------------------------------
+		//逆ポインターsetのため1個は必要
+		//head = NULL;
+		old = NULL;
+		cout<<"入力終了は9999	"<<endl;
+		//p=talloc();//メモリ確保のポインターをget
+		head=talloc();
+		cout<<"名前を入力---->";
+		cin>>head->name;
+		cout<<"Hpを入力--->";
+		cin>>head->Hp;
+		//p=head;
+		old=head;
+
+		//データ作成
+		while(true){
+			p_enemy=talloc();//メモリ確保のポインターをget
+			cout<<"名前を入力---->";
+			cin>>p_enemy->name;
+			if(strcmp(p_enemy->name,"9999")==0)break;
+			cout<<"Hpを入力--->";
+			cin>>p_enemy->Hp;
+			//ポインターのset
+			old->next=p_enemy;
+			old=p_enemy;
+			//p->next=head;
+			//head=p;
+		}
+	//表示
+	Display();
+
+	//挿入する名前を入力--------
+	List_in();
+
+
+	//削除
+	p_enemy=head; flag=0;
+	while(p_enemy!=NULL){
+		if(strcmp(key,p_enemy->name)==0){
+			//発見-->削除後ポインターの入れ替え
+			n->next = p_enemy->next;
+			p_enemy->next=n;
+			flag=1;
+			break;
+		}
+		p_enemy=p_enemy->next;
+	//発見しなかったら最後に追加
+	if(flag==0){
+	printf("キーデータが見つかりません\n");
+	}
+	//表示
+	Display();
+	}
+	//---------------------------
 
 	//int sort_data[11];
 	//int no[11];
@@ -76,18 +144,19 @@ int main()
 
 	//ソート-------------------------------------------
 
-	
-	int sort_data[] = { 50,80,45,31,45,51,2,96,45,200,-1 };//得点  11番目作ると入力数値を入れれる
-	int no[] = { 0, 1, 2, 3, 4, 5,6, 7, 8,  9,-1 };//クリア面数
-	wstring name[] = { L"あ",L"い",L"う",L"え",L"お",L"か",L"き",L"く",L"け",L"こ",L"" };
+	//int sort_data[] = { 50,80,45,31,45,51,2,96,45,200,-1 };//得点  11番目作ると入力数値を入れれる
+	//int no[] = { 0, 1, 2, 3, 4, 5,6, 7, 8,  9,-1 };//クリア面数
+	//wstring name[] = { L"あ",L"い",L"う",L"え",L"お",L"か",L"き",L"く",L"け",L"こ",L"" };
 
 	//Sort_Select------------
-	Show(sort_data, 10);
+
+	/*Show(sort_data, 10);
 	Sort_Select(sort_data, 10);
-	Show(sort_data, 10);
-	//Sort_Select------------
+	Show(sort_data, 10);*/
+	
 
 	//Stable-------------
+
 	//Stable_Show(sort_data, no, 10);
 	//Stable_Sort(sort_data, no, 10);
 	//Stable_Show(sort_data, no, 10);
@@ -95,27 +164,29 @@ int main()
 	//StableEnd----------
 	
 	//Insertion_Sort-----------
+
 	//Show(sort_data, 10);
 	//Insertion_Sort(sort_data, 10);
 	//Show(sort_data, 10);
 	//Insertion_Sort-----------
 
 	//ランキングBubble-------------
-	int Now_data, Now_stage;
-	wstring Now_name;
 
-	Show2(sort_data, no, name, 10);
-	cout << "得点は？"; cin >> Now_data;
-	cout << "面数は？"; cin >> Now_stage;
-	wcout << L"名前は？"; wcin >> Now_name;
+	//int Now_data, Now_stage;
+	//wstring Now_name;
 
-	//ランキングOK?
-	sort_data[10] = Now_data;
-	no[10] = Now_stage;
-	name[10] = Now_name;
-	
-	Bubble_tset(sort_data, no, name, 11);
-	Show2(sort_data, no, name, 10);
+	//Show2(sort_data, no, name, 10);
+	//cout << "得点は？"; cin >> Now_data;
+	//cout << "面数は？"; cin >> Now_stage;
+	//wcout << L"名前は？"; wcin >> Now_name;
+
+	////ランキングOK?
+	//sort_data[10] = Now_data;
+	//no[10] = Now_stage;
+	//name[10] = Now_name;
+	//
+	//Bubble_tset(sort_data, no, name, 11);
+	//Show2(sort_data, no, name, 10);
 	
 	//ランキングBubbleEnd------------
 
@@ -126,7 +197,58 @@ int main()
 	cin >> i;
 
 }
+//連結リスト--------------------
 
+//メモリ領域の取得
+struct  Enemy* talloc(void)
+{
+	return (struct Enemy*)malloc(sizeof(struct Enemy));
+};
+
+void Display(){
+	old->next=NULL;//後処理
+	p_enemy=head;
+	while(p_enemy!=NULL){
+		//表示
+		cout<<"[名前]"<<p_enemy->name;
+		cout<<"[Hp]"<<p_enemy->Hp<<endl;
+		p_enemy=p_enemy->next;
+	}
+}
+
+//連結リストの先頭にノードを挿入
+void List_in(){
+		cout<<"検索する名前を入力---->"<<endl;
+		cin>>key;
+		n=talloc();//メモリ確保のポインターをget
+		cout<<"追加する名前を入力---->"<<endl;
+		cin>>n->name;
+		cout<<"追加するHpを入力---->"<<endl;
+		cin>>n->Hp;
+
+		//検索する
+		p_enemy=head; flag=0;
+		while(p_enemy!=NULL){
+			if(strcmp(key,p_enemy->name)==0){
+				//発見-->ポインターの入れ替え
+				n->next = p_enemy->next;
+				p_enemy->next=n;
+				flag=1;
+				break;
+			}
+			p_enemy=p_enemy->next;
+		}
+		//発見しなかったら最後に追加
+		if(flag==0){
+		printf("キーデータが見つかりませんので先頭に追加します\n");
+		n->next=head;
+		head=n;
+		}
+		//表示
+		Display();
+}
+
+//--------------------
 //ハッシュ
 void Hash(){
 		//データ作成
