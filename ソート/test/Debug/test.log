@@ -1,4 +1,4 @@
 ﻿  Source.cpp
-c:\users\student\desktop\basicsearch\ソート\test\source.cpp(400): warning C4101: 'j': ローカル変数は 1 度も使われていません。
-c:\users\student\desktop\basicsearch\ソート\test\source.cpp(506): warning C4101: 'j': ローカル変数は 1 度も使われていません。
-  test.vcxproj -> C:\Users\student\Desktop\BasicSearch\ソート\test\Debug\test.exe
+c:\users\student\desktop\github\basicsearch\ソート\test\source.cpp(409): warning C4101: 'j': ローカル変数は 1 度も使われていません。
+c:\users\student\desktop\github\basicsearch\ソート\test\source.cpp(515): warning C4101: 'j': ローカル変数は 1 度も使われていません。
+  test.vcxproj -> C:\Users\student\Desktop\GitHub\BasicSearch\ソート\test\Debug\test.exe

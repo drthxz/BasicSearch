@@ -22,6 +22,7 @@ void Merge();
 void Hash();
 int hash_make(char *s);
 
+
 //学生リスト
 struct Seito
 {
@@ -46,7 +47,8 @@ int flag;
 /* 構造体変数の宣言 */
 //typedef struct enemy Enemy_t;
 void Display();
-
+void List_in();
+void Del();
 
 int main()
 {
@@ -89,25 +91,11 @@ int main()
 	//挿入する名前を入力--------
 	List_in();
 
+	
+	Del();
 
 	//削除
-	p_enemy=head; flag=0;
-	while(p_enemy!=NULL){
-		if(strcmp(key,p_enemy->name)==0){
-			//発見-->削除後ポインターの入れ替え
-			n->next = p_enemy->next;
-			p_enemy->next=n;
-			flag=1;
-			break;
-		}
-		p_enemy=p_enemy->next;
-	//発見しなかったら最後に追加
-	if(flag==0){
-	printf("キーデータが見つかりません\n");
-	}
-	//表示
-	Display();
-	}
+	
 	//---------------------------
 
 	//int sort_data[11];
@@ -247,6 +235,37 @@ void List_in(){
 		//表示
 		Display();
 }
+
+void Del(){
+
+	cout<<"削除する名前を入力---->"<<endl;
+	
+	cin>>key;
+	
+	//削除
+	struct Enemy *p_enemy, *old;
+	p_enemy=old=head;
+	flag=0;
+	while(p_enemy!=NULL){
+		if(strcmp(key,p_enemy->name)==0){
+			//発見-->削除後ポインターの入れ替え
+			if(p_enemy==head)head=p_enemy->next;
+			else old->next=p_enemy->next;
+			flag=1;
+			break;
+		}
+		old=p_enemy;
+		p_enemy=p_enemy->next;
+	}
+	//表示
+	if(flag==0){
+		printf("キーデータが見つかりません\n");
+	}
+	if(flag==1){
+		Display();
+	}
+}
+
 
 //--------------------
 //ハッシュ
