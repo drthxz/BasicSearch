@@ -1,0 +1,5 @@
+﻿  Source.cpp
+c:\users\student\desktop\test\test\source.cpp(90): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+c:\users\student\desktop\test\test\source.cpp(156): error C3867: 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>::length': 非標準の構文です。メンバーにポインタを作成するには '&' を使用してください
+c:\users\student\desktop\test\test\source.cpp(156): error C2446: '<': 'unsigned int (__thiscall std::basic_string<char,std::char_traits<char>,std::allocator<char>>::* )(void) noexcept const' 型から 'int' 型への変換ができません。
+  c:\users\student\desktop\test\test\source.cpp(156): note: この変換が可能なコンテキストはありません。
